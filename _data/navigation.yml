@@ -1,16 +1,10 @@
 main:
-  # - title: "Quick-Start Guide"
-  #   url: /docs/quick-start-guide/
-  # - title: "Posts"
-  #   url: /year-archive/
-  # - title: "Categories"
-  #   url: /categories/
-  # - title: "Tags"
-  #   url: /tags/
-  # - title: "Pages"
-  #   url: /page-archive/
+  - title: "Homelab"
+    url: /homelab/
   - title: "Projects"
     url: /projects/
+  - title: "Blog"
+    url: /blog/
   # - title: "External Link"
   #   url: https://google.com
   #   target: _blank

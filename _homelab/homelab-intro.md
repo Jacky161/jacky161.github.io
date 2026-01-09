@@ -1,7 +1,9 @@
 ---
-title:  "Homelab Administration"
+title:  "Homelab Intro"
 excerpt: "How I host useful services and own my own data with my home server."
 date: 2026-01-04
+last_modified_at: 2026-01-08
+order: 1
 ---
 
 I administrate and run my own home server with some useful self hosted services. These services include Immich to store my photo library, SMB and NFS servers providing network storage to all my devices, and much more.
@@ -16,11 +18,11 @@ Also, self hosting is just fun and you end up learning a lot throughout the proc
 
 ### Pitfalls
 
-All of that being said, it wouldn't be fair to say that there aren't any downsides to doing things this way. There are numerous pitfalls to be aware of and if you don't prepare, you may have to learn them the hard way. Just to start, like I said earlier, your data is in your own hands. Proper backups (preferably of the 3-2-1 variety) are <ins>**critical**</ins> or you will lose data at some point or another. Check out my backup article to see how I manage backups in my servers. Security is also paramount. If you don't lock things down properly, you might wake up to someone mining bitcoin on your poor server (or worse, maybe snooping through your files).
+All of that being said, it wouldn't be fair to say that there aren't any downsides to doing things this way. There are numerous pitfalls to be aware of and if you don't prepare, you may have to learn them the hard way. Just to start, like I said earlier, your data is in your own hands. Proper backups (preferably of the 3-2-1 variety) are <ins>**critical**</ins> or you will lose data at some point or another. Check out my post on backups to see how I manage them in my servers. Security is also paramount. If you don't lock things down properly, you might wake up to someone mining bitcoin on your poor server (or worse, maybe snooping through your files).
 
 ## My Setup
 
-From the outside, my server certainly doesn't look the part. When you hear the word "server", you may think of a rack-mounted affair meant to live inside a server rack. For my use case and budget, this was unfortunately not practical (though I would love to have that some day). My server is simply a desktop PC with an Intel® Core™ i5-12400, 32GB of RAM, a boot SSD, and several hard drives for mass storage. The main storage pool consists of 2 16TB Seagate IronWolf Pros mirrored in RAID-1 for redundancy.
+From the outside, my server certainly doesn't look the part. When you hear the word "server", you may think of a rack-mounted affair meant to live inside a server rack. For my use case and budget, this was unfortunately not practical (though I would love to have that some day). My server is simply a desktop PC with an Intel® Core™ i5-12400, 32GB of RAM, a 512GB boot SSD, and several hard drives for mass storage. The main storage pool consists of 2 16TB Seagate IronWolf Pros mirrored in RAID-1 for redundancy.
 
 ## Software
 
@@ -28,7 +30,7 @@ My server runs on Proxmox as its main OS. I chose Proxmox for its relative simpl
 
 I currently run two virtual machines to host all my production services. The first is a TrueNAS Scale VM which handles the hard drives pools with ZFS. TrueNAS has a handy web UI that makes it easy to setup automatic snapshots, ZFS replication (for backups), and SMB + NFS shares. As well, ACLs are properly supported which makes permissions just a tad less painful with multiple users.
 
-The second VM runs Debian which handles anything not related to storage management. Most services run in Docker though I have a small few that are not such as my Wireguard VPN. NFS is setup so that large files can be stored on the storage pool managed by TrueNAS. Currently, I run the following services:
+The second VM runs Debian which handles anything not related to storage management. Most services run in Docker, though I have a small few that are not such as my Wireguard VPN. NFS is setup so that large files can be stored on the storage pool managed by TrueNAS. Currently, I run the following services:
 
 - Authelia (Single Sign-On)
 - LLDAP (User and Group Management)
