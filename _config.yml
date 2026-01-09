@@ -88,7 +88,7 @@ author:
       url: "https://github.com/Jacky161"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/jacky-la-524577300/"
+      url: "https://www.linkedin.com/in/jackyla"
 
 footer:
   links:
@@ -97,7 +97,7 @@ footer:
       url: "https://github.com/Jacky161"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/jacky-la-524577300/"
+      url: "https://www.linkedin.com/in/jackyla"
 
 include: ["_experience", "_homelab", "_pages", "_posts", "_projects"]
 
