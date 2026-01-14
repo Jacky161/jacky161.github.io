@@ -12,7 +12,14 @@ These days, it seems like everything is connected to the internet. The world of 
 
 In a traditional network, all devices are unified under one subnet (range of IPs), say `192.168.1.0/24`. This is CIDR notation which represents the range of IP addresses from `192.168.1.0 - 192.168.1.255`.
 
+{% capture consumer_network_diagram %}
 ![Standard Consumer Network Diagram]({{ site.url }}{{ site.baseurl }}/assets/images/2026-01-13-separating-insecure-devices-basic-network.png)
+{% endcapture %}
+
+<figure>
+  {{ consumer_network_diagram | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>A typical consumer home network.</figcaption>
+</figure>
 
 Here we can see a basic consumer network, likely similar to one that you may have at home. Devices are connected via a router, likely provided by your ISP, which broadcasts a wireless network as well as providing ethernet ports for wired devices. All devices connected to the network will have an IP address within your local subnet. With a setup like this, any device connected to your network can talk to each other. Your smart thermostat at `192.168.1.42` can talk to your computer at `192.168.1.20` if it wanted to. Even especially suspicious devices, like `192.168.1.67` could talk to anyone!
 
@@ -20,9 +27,14 @@ Here we can see a basic consumer network, likely similar to one that you may hav
 
 VLANs are a way to separate your network into different logical segments. For example, I could create a VLAN dedicated to my IoT devices and another dedicated to my servers, and setup a rule such that those two VLANs cannot talk to each other. That way, if one of my IoT devices is compromised, they can't try to hack into my server from there. VLANs are associated with different subnets. So we could assign my servers the subnet `192.168.10.0/24`, whereas my IoT devices might live on `192.168.20.0/24`.
 
+{% capture basic_vlan_diagram %}
 ![Basic VLAN Diagram]({{ site.url }}{{ site.baseurl }}/assets/images/2026-01-13-separating-insecure-devices-rvlan-physical.png)
+{% endcapture %}
 
-Source: [practicalnetworking.net](https://www.practicalnetworking.net/stand-alone/routing-between-vlans/)
+<figure>
+  {{ basic_vlan_diagram | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>Diagram from <a href="https://www.practicalnetworking.net/stand-alone/routing-between-vlans/">practicalnetworking.net</a></figcaption>
+</figure>
 
 This diagram shows how a network switch can be divided into different VLANs. This requires a special switch called a "Managed" switch which can operate on Layer 3 of the OSI model. If a computer on VLAN 20 wants to talk to a computer on VLAN 30, they must go through a router which may or may not allow the request based on firewall rules. In contrast, devices on the same VLAN do not need to go through a router to talk to each other and can communicate directly.
 
@@ -46,7 +58,14 @@ The guide has you create a bridge for your new network and then add an interface
 
 When setting up the firewall rules, this is where you set what you want devices on each firewall zone to be allowed to access.
 
+{% capture openwrt_firewall_rules %}
 ![OpenWRT Basic Firewall Rules]({{ site.url }}{{ site.baseurl }}/assets/images/2026-01-13-separating-insecure-devices-firewall-rules.png)
+{% endcapture %}
+
+<figure>
+  {{ openwrt_firewall_rules | markdownify | remove: "<p>" | remove: "</p>" }}
+  <figcaption>My firewall zone rules for a separate LAN and IoT network.</figcaption>
+</figure>
 
 Here are some firewall rules that I've set up as an example. Let's go through the columns and talk through them.
 
